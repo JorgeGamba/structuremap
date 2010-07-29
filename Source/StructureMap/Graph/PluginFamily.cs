@@ -283,6 +283,7 @@ namespace StructureMap.Graph
             var templatedFamily = new PluginFamily(templatedType, Parent);
             templatedFamily.DefaultInstanceKey = DefaultInstanceKey;
             templatedFamily._lifecycle = _lifecycle;
+            templatedFamily.MissingInstance = MissingInstance;
 
             _instances.GetAll().Select(x =>
             {

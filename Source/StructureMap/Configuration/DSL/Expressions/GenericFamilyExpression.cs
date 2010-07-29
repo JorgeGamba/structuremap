@@ -21,6 +21,22 @@ namespace StructureMap.Configuration.DSL.Expressions
             _registry = registry;
         }
 
+        public InstanceExpression<object> MissingNamedInstanceIs
+        {
+            get
+            {
+                return new InstanceExpression<object>(i =>
+                    {
+                        _registry.addExpression(graph =>
+                        {
+                            PluginFamily family = graph.FindFamily(_pluginType);
+
+                            family.MissingInstance = i;
+                        });
+                    });
+            }
+        }
+
         private GenericFamilyExpression alterAndContinue(Action<PluginFamily> action)
         {
             _registry.addExpression(graph =>
