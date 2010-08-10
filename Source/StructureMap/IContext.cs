@@ -41,14 +41,27 @@ namespace StructureMap
         /// <returns></returns>
         T GetInstance<T>();
 
-        object GetInstance(Type pluginType);
-
         /// <summary>
         /// Get the object of type T that is valid for this build session by name.
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
         T GetInstance<T>(string name);
+
+        /// <summary>
+        /// Get the object of pluginType that is valid for this build session.
+        /// </summary>
+        /// <param name="pluginType"></param>
+        /// <returns></returns>
+        object GetInstance(Type pluginType);
+
+        /// <summary>
+        /// Get the object of pluginType that is valid for this build session by name.
+        /// </summary>
+        /// <param name="pluginType"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
+        object GetInstance(Type pluginType, string name);
 
         /// <summary>
         /// Register a default object for the given PluginType that will

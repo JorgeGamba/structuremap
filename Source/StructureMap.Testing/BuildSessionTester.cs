@@ -319,6 +319,22 @@ namespace StructureMap.Testing
             instance.ShouldBeOfType<Service>();
         }
 
+        [Test]
+        public void Can_get_an_instance_by_name_using_the_non_generic_method()
+        {
+            var registry = new Registry();
+            registry.For<IFooService>().Use<Service>().Named("Foo");
+
+            var graph = registry.Build();
+
+            var session = new BuildSession(graph);
+
+            var instance = session.GetInstance(typeof(IFooService), "Foo");
+
+            instance.ShouldNotBeNull();
+            instance.ShouldBeOfType<Service>();
+        }
+
         public interface IFooService { }
         public class Service : IFooService { }
 
